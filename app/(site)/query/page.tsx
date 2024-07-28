@@ -80,6 +80,7 @@ const DepartmentPage = () => {
         .then((data) => {
           setFormLoading(false);
           setQuery(data);
+          form.reset();
           if(query){
             queryList.push(query);
           }

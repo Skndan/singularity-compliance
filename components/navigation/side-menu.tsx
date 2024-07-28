@@ -24,10 +24,10 @@ const SidebarNav = () => {
       children: []
     },
     {
-      href: `/my-space`,
-      label: "My Space",
+      href: `/query`,
+      label: "Query",
       icon: RocketIcon,
-      active: pathname.match(`/my-space`),
+      active: pathname.match(`/query`),
       role: ["hr", "admin", "user"],
       children: []
     }

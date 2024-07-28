@@ -56,14 +56,14 @@ const AuthenticationPage = () => {
           <div className="container sm:mx-auto grid w-full grid-col-1 justify-center space-y-2 sm:w-[350px] ">
             <div className="flex justify-center align-middle p-8 lg:hidden">
             <Image
-                src="/compliance-light.svg"
+                src="/compliance-dark.svg"
                 className="hidden dark:block"
                 width="200"
                 height="64"
                 alt="Logo"
               />
               <Image
-                src="/compliance-dark.svg"
+                src="/compliance-light.svg"
                 className="block dark:hidden"
                 width="200"
                 height="64"

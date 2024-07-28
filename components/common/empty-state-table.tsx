@@ -19,17 +19,17 @@ export const EmptyStateTable: React.FC<HeadingProps> = ({
     const router = useRouter();
 
     return (
-        <div className="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed">
+        <div className="flex h-[200px] shrink-0 items-center justify-center rounded-md border border-dashed">
             <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
 
                 <Image
                     src="/empty-folder2.png"
-                    width="100"
+                    width="80"
                     height="56"
                     alt="Empty-Folder"
                 />
 
-                <h3 className="mt-4 text-lg font-semibold">{title}</h3>
+                {/* <h3 className="mt-4 text-lg font-semibold">{title}</h3> */}
                 <p className="mb-4 mt-2 text-sm text-muted-foreground">
                     {description}
                 </p>

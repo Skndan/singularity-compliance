@@ -30,6 +30,7 @@ import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyStateTable } from "@/components/common/empty-state-table";
 import { ResultBox } from "./view/_component/result-box";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const formSchema = z.object({
   query: z.string().min(1),
@@ -81,7 +82,7 @@ const DepartmentPage = () => {
           setFormLoading(false);
           setQuery(data);
           form.reset();
-          if(query){
+          if (query) {
             queryList.push(query);
             setQueryList(queryList);
           }
@@ -97,6 +98,138 @@ const DepartmentPage = () => {
   };
 
   const queries = [
+    {
+      content: `What if I want a refund?`,
+      hash: "14601415986",
+    },
+    {
+      content: `How much time does it take you to build an e-commerce website?`,
+      hash: "89c29829c8cb",
+    },
+    {
+      content: `How much does a landing page cost to develop`,
+      hash: "TU5b3ecOt15",
+    },
+    {
+      content: `What if I want a refund?`,
+      hash: "14601415986",
+    },
+    {
+      content: `How much time does it take you to build an e-commerce website?`,
+      hash: "89c29829c8cb",
+    },
+    {
+      content: `How much does a landing page cost to develop`,
+      hash: "TU5b3ecOt15",
+    },
+    {
+      content: `What if I want a refund?`,
+      hash: "14601415986",
+    },
+    {
+      content: `How much time does it take you to build an e-commerce website?`,
+      hash: "89c29829c8cb",
+    },
+    {
+      content: `How much does a landing page cost to develop`,
+      hash: "TU5b3ecOt15",
+    },
+    {
+      content: `What if I want a refund?`,
+      hash: "14601415986",
+    },
+    {
+      content: `How much time does it take you to build an e-commerce website?`,
+      hash: "89c29829c8cb",
+    },
+    {
+      content: `How much does a landing page cost to develop`,
+      hash: "TU5b3ecOt15",
+    },
+    {
+      content: `What if I want a refund?`,
+      hash: "14601415986",
+    },
+    {
+      content: `How much time does it take you to build an e-commerce website?`,
+      hash: "89c29829c8cb",
+    },
+    {
+      content: `How much does a landing page cost to develop`,
+      hash: "TU5b3ecOt15",
+    },
+    {
+      content: `What if I want a refund?`,
+      hash: "14601415986",
+    },
+    {
+      content: `How much time does it take you to build an e-commerce website?`,
+      hash: "89c29829c8cb",
+    },
+    {
+      content: `How much does a landing page cost to develop`,
+      hash: "TU5b3ecOt15",
+    },
+    {
+      content: `What if I want a refund?`,
+      hash: "14601415986",
+    },
+    {
+      content: `How much time does it take you to build an e-commerce website?`,
+      hash: "89c29829c8cb",
+    },
+    {
+      content: `How much does a landing page cost to develop`,
+      hash: "TU5b3ecOt15",
+    },
+    {
+      content: `What if I want a refund?`,
+      hash: "14601415986",
+    },
+    {
+      content: `How much time does it take you to build an e-commerce website?`,
+      hash: "89c29829c8cb",
+    },
+    {
+      content: `How much does a landing page cost to develop`,
+      hash: "TU5b3ecOt15",
+    },
+    {
+      content: `What if I want a refund?`,
+      hash: "14601415986",
+    },
+    {
+      content: `How much time does it take you to build an e-commerce website?`,
+      hash: "89c29829c8cb",
+    },
+    {
+      content: `How much does a landing page cost to develop`,
+      hash: "TU5b3ecOt15",
+    },
+    {
+      content: `What if I want a refund?`,
+      hash: "14601415986",
+    },
+    {
+      content: `How much time does it take you to build an e-commerce website?`,
+      hash: "89c29829c8cb",
+    },
+    {
+      content: `How much does a landing page cost to develop`,
+      hash: "TU5b3ecOt15",
+    },
+    {
+      content: `What if I want a refund?`,
+      hash: "14601415986",
+    },
+    {
+      content: `How much time does it take you to build an e-commerce website?`,
+      hash: "89c29829c8cb",
+    },
+    {
+      content: `How much does a landing page cost to develop`,
+      hash: "TU5b3ecOt15",
+    },
     {
       content: `What if I want a refund?`,
       hash: "14601415986",
@@ -150,35 +283,34 @@ const DepartmentPage = () => {
               <CardDescription>{`Here are queries you've recently submitted`}</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col">
-                {
-                  loading && <div className="flex flex-col gap-4">
-                    <div className="flex flex-row space-x-4 justify-between">
-                      <Skeleton className="h-4 w-[250px]" />
-                      <Skeleton className="h-4 w-[100px]" />
-                    </div>
-                    <div className="flex flex-row space-x-4 justify-between">
-                      <Skeleton className="h-4 w-[150px]" />
-                      <Skeleton className="h-4 w-[100px]" />
-                    </div>
-                  </div>
-                }
-                {
-                  !loading && queryList.length == 0 ? <EmptyStateTable title={"No search queries found"} description={"No search queries found"} action={null} onClick={function (): void {
-                    throw new Error("Function not implemented.");
-                  }} /> : <></>
-                }
-                {
-                  queryList.map((e) => {
-                    return (
-                      <div key={e.query_id} className="flex flex-row justify-between my-2">
-
-                        <Link href={`/query/view/${e.query_id}`}><Label className="hover:underline cursor-pointer">{e.query_text}</Label></Link>
+              <ScrollArea className="h-96 w-full">
+                <div className="flex flex-col h-full overflow-y-auto">
+                  {
+                    loading && <div className="flex flex-col gap-4">
+                      <div className="flex flex-row space-x-4 justify-between">
+                        <Skeleton className="h-4 w-[250px]" />
                       </div>
-                    )
-                  })
-                }
-              </div>
+                      <div className="flex flex-row space-x-4 justify-between">
+                        <Skeleton className="h-4 w-[150px]" />
+                      </div>
+                    </div>
+                  }
+                  {
+                    !loading && queryList.length == 0 ? <EmptyStateTable title={"No search queries found"} description={"No search queries found"} action={null} onClick={function (): void {
+                      throw new Error("Function not implemented.");
+                    }} /> : <></>
+                  }
+                  {
+                    queryList.map((e, i) => {
+                      return (
+                        <div key={i} className="flex flex-row justify-between my-2">
+                          <Link href={`/query/view/${e.query_id}`}><Label className="hover:underline cursor-pointer">{e.query_text}</Label></Link>
+                        </div>
+                      )
+                    })
+                  }
+                </div>
+              </ScrollArea>
 
             </CardContent>
           </Card>

@@ -83,6 +83,7 @@ const DepartmentPage = () => {
           form.reset();
           if(query){
             queryList.push(query);
+            setQueryList(queryList);
           }
           setResultBox(true);
           // router.push(`/query/view/${data.query_id}`);

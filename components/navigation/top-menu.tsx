@@ -36,10 +36,10 @@ export function MainNav({
       children: []
     },
     {
-      href: `/query`,
-      label: "Query",
+      href: `/connection`,
+      label: "Connection",
       icon: RocketIcon,
-      active: pathname.match(`/query`),
+      active: pathname.match(`/connection`),
       role: ["hr", "admin", "user"],
       children: []
     }

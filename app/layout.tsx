@@ -14,8 +14,8 @@ import { Loader } from "lucide-react";
 const urbanist = Urbanist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Compliance",
-  description: "Compliance",
+  title: "Mirror",
+  description: "Mirror",
 };
 
 

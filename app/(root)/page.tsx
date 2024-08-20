@@ -24,14 +24,14 @@ const AuthenticationPage = () => {
         <div className="relative min-h-screen hidden flex-col bg-muted p-10 dark:border-r lg:flex">
           <div className="relative z-20 flex items-center ">
           <Image
-                src="/compliance-dark.svg"
+                src="/mirror-dark.svg"
                 className="hidden dark:block"
                 width="200"
                 height="64"
                 alt="Logo"
               />
               <Image
-                src="/compliance-light.svg"
+                src="/mirror-light.svg"
                 className="block dark:hidden"
                 width="200"
                 height="64"
@@ -56,14 +56,14 @@ const AuthenticationPage = () => {
           <div className="container sm:mx-auto grid w-full grid-col-1 justify-center space-y-2 sm:w-[350px] ">
             <div className="flex justify-center align-middle p-8 lg:hidden">
             <Image
-                src="/compliance-dark.svg"
+                src="/mirror-dark.svg"
                 className="hidden dark:block"
                 width="200"
                 height="64"
                 alt="Logo"
               />
               <Image
-                src="/compliance-light.svg"
+                src="/mirror-light.svg"
                 className="block dark:hidden"
                 width="200"
                 height="64"
@@ -71,7 +71,7 @@ const AuthenticationPage = () => {
               />
             </div>
             <Login />
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t" />
               </div>
@@ -80,8 +80,8 @@ const AuthenticationPage = () => {
                   Or continue with
                 </span>
               </div>
-            </div>
-            <Button variant="outline" type="button" disabled={isLoading}>
+            </div> */}
+            {/* <Button variant="outline" type="button" disabled={isLoading}>
               {isLoading ? (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               ) : (
@@ -104,7 +104,7 @@ const AuthenticationPage = () => {
                 <Icons.logo className="mr-2 h-4 w-4" />
               )}{" "}
               Continue with SSO
-            </Button>
+            </Button> */}
             <p className="px-8 text-center text-sm text-muted-foreground pb-6">
               By logging in, you agree to our <br />
               <Link

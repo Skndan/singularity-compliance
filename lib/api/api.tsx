@@ -64,7 +64,7 @@ export function setupAPIClient(ctx?: GetServerSidePropsContext) {
             failedRequestsQueue.push({
               onSuccess: (token: string) => {
                 // @ts-ignore
-                originalConfig.headers["Authorization"] = `Bearer ${token}`;
+                originalConfig.headers["Guacamole-Token"] = `${token}`;
 
                 resolve(api(originalConfig));
               },
@@ -88,11 +88,14 @@ export function setupAPIClient(ctx?: GetServerSidePropsContext) {
 
   // Interceptor for request
   api.interceptors.request.use(
-    async (config) => { 
-      let token = cookies["nextauth.token"];
-      if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
-      }
+    async (config) => {
+      // let token = cookies["nextauth.token"];
+      // config.headers["Access-Control-Allow-Origin"] = true;
+      // if (token) {
+      //   config.headers['Guacamole-Token'] = token;
+      // }
+
+      config.headers["Content-Type"] = "application/x-www-form-urlencoded";
       return config;
     },
     (error) => Promise.reject(error)

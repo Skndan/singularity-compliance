@@ -35,74 +35,74 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<Profile | undefined>(undefined);
   const [roles, setRoles] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(true); // Add a loading state
+  const [isLoading, setIsLoading] = useState(false); // Add a loading state
   const isAuthenticated = !!user;
   const router = useRouter();
 
-  useEffect(() => {
-    const { 'nextauth.token': token } = parseCookies();
+  // useEffect(() => {
+  //   const { 'nextauth.token': token } = parseCookies();
 
-    if (token) {
-      const { jti, groups } = parseJwt(token);
+  //   if (token) {
+  //     const { jti, groups } = parseJwt(token);
 
-      apiClient.get(`/profile/get-by-user/${jti}`)
-        .then((res) => res.data)
-        .then((data) => {
-          const profile: Profile = {
-            userId: jti,
-            profileId: data.id,
-            orgId: data.organisation.id,
-            profilePicture: '',
-            username: data.name,
-            email: data.email,
-            mobile: data.mobile,
-            departmentId: data.department?.id,
-          };
-          setUser(profile);
-          setRoles(groups);
-        })
-        .catch((e) => {
-          console.log(e);
-          signOut();
-        })
-        .finally(() => {
-          setIsLoading(false); // Set loading to false after the request completes
-        });
-    } else {
-      setIsLoading(false); // Also set loading to false if there's no token
-    }
-  }, []);
+  //     apiClient.get(`/profile/get-by-user/${jti}`)
+  //       .then((res) => res.data)
+  //       .then((data) => {
+  //         const profile: Profile = {
+  //           userId: jti,
+  //           profileId: data.id,
+  //           orgId: data.organisation.id,
+  //           profilePicture: '',
+  //           username: data.name,
+  //           email: data.email,
+  //           mobile: data.mobile,
+  //           departmentId: data.department?.id,
+  //         };
+  //         setUser(profile);
+  //         setRoles(groups);
+  //       })
+  //       .catch((e) => {
+  //         console.log(e);
+  //         signOut();
+  //       })
+  //       .finally(() => {
+  //         setIsLoading(false); // Set loading to false after the request completes
+  //       });
+  //   } else {
+  //     setIsLoading(false); // Also set loading to false if there's no token
+  //   }
+  // }, []);
 
   const signIn = useCallback(async ({ email, password }: SignInCredentials) => {
     setIsLoading(true); // Start loading when sign-in begins
     try {
-      const response = await apiClient.post('/auth/authenticate', {
-        email,
+      const response = await apiClient.post('/tokens', {
+        username: email,
         password,
       });
 
-      const { token, refreshToken, expiry } = response.data;
-      saveTokensOnCookies(token, refreshToken, expiry);
+      const { authToken } = response.data;
+      saveTokensOnCookies(authToken, '', '');
 
-      apiClient.defaults.headers['Authorization'] = `Bearer ${token}`;
+      apiClient.defaults.headers['Guacamole-Token'] = `${authToken}`;
 
-      const { jti, groups } = parseJwt(token);
+      // const { jti, groups } = parseJwt(token);
 
-      const profileResponse = await apiClient.get(`/profile/get-by-user/${jti}`);
-      const data = profileResponse.data;
+      // const profileResponse = await apiClient.get(`/profile/get-by-user/${jti}`);
+      // const data = profileResponse.data;
 
-      const profile: Profile = {
-        userId: jti,
-        profileId: data.id,
-        orgId: data.organisation.id,
-        profilePicture: '',
-        username: data.name,
-        email: data.email,
-        mobile: data.mobile,
-      };
+      // const profile: Profile = {
+      //   userId: jti,
+      //   profileId: data.id,
+      //   orgId: data.organisation.id,
+      //   profilePicture: '',
+      //   username: data.name,
+      //   email: data.email,
+      //   mobile: data.mobile,
+      // };
 
-      setUser(profile);
-      setRoles(groups);
+      // setUser(profile);
+      // setRoles(groups);
       toast.success('Welcome');
       router.push('/dashboard'); // Redirect to dashboard after successful sign-in
     } catch (err) {

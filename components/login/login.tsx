@@ -30,6 +30,7 @@ import { useUserStore } from '@/store/use-user-store';
 import { useAuth } from '@/context/auth-provider';
 import { Eye, Loader } from 'lucide-react';
 import apiClient from '@/lib/api/api-client';
+import { signOut } from '@/lib/utils/sign-out';
 
 const formSchema = z.object({
   email: z.string().min(1),
@@ -60,12 +61,13 @@ const Login = () => {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       // setLoading(true);
-      // data.email.trim();
-      // data.password.trim();
+      signOut();
+      data.email.trim();
+      data.password.trim();
 
-      // await signIn(data);
+      await signIn(data);
       toast.success('Welcome');
-      router.push('/dashboard'); // Redirect to dashboard after successful sign-in
+      // router.push('/dashboard'); // Redirect to dashboard after successful sign-in
 
       // setLoading(false);
     } catch (error: any) {

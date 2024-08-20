@@ -17,14 +17,14 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           <div className="flex h-16 items-center px-4">
             <MobileNav />
             <Image
-              src="/compliance-dark.svg"
+              src="/mirror-dark.svg"
               className="hidden dark:block pl-3"
               width="136"
               height="56"
               alt="Logo"
             />
             <Image
-              src="/compliance-light.svg"
+              src="/mirror-light.svg"
               className="block dark:hidden pl-3"
               width="136"
               height="56"

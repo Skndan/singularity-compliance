@@ -23,7 +23,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
-import { Globe, Home, Loader, User } from "lucide-react";
+import { ArrowRight, Globe, Home, Loader, User } from "lucide-react";
 import Link from "next/link";
 import apiClient from "@/lib/api/api-client";
 import { Query } from "@/types/query";
@@ -42,6 +42,7 @@ type DepartmentFormValues = z.infer<typeof formSchema>;
 
 const DepartmentPage = () => {
 
+  const router = useRouter();
   const form = useForm<DepartmentFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {},
@@ -63,7 +64,7 @@ const DepartmentPage = () => {
 
 
   function handleClick(event: any) {
-    
+    router.push(`/connection/view`)
   }
 
   return (
@@ -78,17 +79,17 @@ const DepartmentPage = () => {
                     </Button> */}
         </div>
         <Separator />
-        <div className="grid md:grid-cols-3 gap-4">
-          <Card className="hover:bg-muted cursor-pointer" onClick={handleClick}>
+        <div className="grid md:grid-cols-4 gap-4">
+          <Card onClick={handleClick} className="hover:bg-muted cursor-pointer">
             <CardHeader>
-              <CardTitle className="text-xl">ss</CardTitle>
+              <CardTitle className="text-xl">Windows</CardTitle>
             </CardHeader>
-            <CardContent className="w-[350px]">
-
-            </CardContent>
-            <CardFooter className="flex justify-between">
-
-            </CardFooter>
+            <CardContent>
+              <div className="flex flex-row justify-between">
+                <Label>Launch</Label>
+                <ArrowRight className="h-4 w-4"/>
+              </div>
+            </CardContent> 
           </Card> 
         </div>
 
